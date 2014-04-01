@@ -6,11 +6,12 @@ sudo apt-get -y install autoconf automake build-essential libass-dev libgpac-dev
   libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev \
   libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev libmp3lame-dev
 
+FFMPEG_PREFIX="$(echo $HOME/local)"
 FFMPEG_SOURCES="$(echo $HOME/ffmpeg_sources)"
-FFMPEG_PREFIX="$(echo $HOME/ffmpeg_build)"
-FFMPEG_BINDIR="$(echo $HOME/bin)"
+FFMPEG_BINDIR="$(echo $HOME/local/bin)"
 PATH=$FFMPEG_BINDIR:$PATH
 
+mkdir -p $FFMPEG_PREFIX
 mkdir -p $FFMPEG_SOURCES
 
 cd $FFMPEG_SOURCES
