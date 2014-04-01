@@ -10,3 +10,11 @@ This will give you FFmpeg binaries with the following optional codecs:
 - VP8/VP9
 
 You can customize the installation paths by changing the `FFMPEG_PREFIX` and `FFMPEG_BINDIR` in the script.
+
+## Installation
+
+```sh
+$ wget https://raw.githubusercontent.com/zhm/ffmpeg-ubuntu/master/install_ffmpeg.sh
+$ chmod +x install_ffmpeg.sh
+$ ./install_ffmpeg.sh
+```
