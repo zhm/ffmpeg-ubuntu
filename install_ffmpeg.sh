@@ -72,11 +72,3 @@ make
 make install
 make distclean
 hash -r
-
-
-
-
-
-
-
-
