@@ -8,7 +8,7 @@ sudo apt-get -y install autoconf automake build-essential libass-dev libgpac-dev
 
 FFMPEG_PREFIX="$(echo $HOME/local)"
 FFMPEG_SOURCES="$(echo $HOME/ffmpeg_sources)"
-FFMPEG_BINDIR="$(echo $HOME/local/bin)"
+FFMPEG_BINDIR="$(echo $FFMPEG_PREFIX/bin)"
 PATH=$FFMPEG_BINDIR:$PATH
 
 mkdir -p $FFMPEG_PREFIX
