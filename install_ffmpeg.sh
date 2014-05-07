@@ -4,7 +4,8 @@ sudo apt-get remove ffmpeg x264 libx264-dev libvpx
 
 sudo apt-get -y install autoconf automake build-essential libass-dev libgpac-dev \
   libsdl1.2-dev libtheora-dev libtool libva-dev libvdpau-dev libvorbis-dev libx11-dev \
-  libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev libmp3lame-dev
+  libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev libmp3lame-dev \
+  libopencore-amrnb-dev libopencore-amrwb-dev libvo-amrwbenc-dev
 
 FFMPEG_PREFIX="$(echo $HOME/local)"
 FFMPEG_SOURCES="$(echo $HOME/ffmpeg_sources)"
@@ -60,15 +61,17 @@ make clean
 
 
 cd $FFMPEG_SOURCES
-wget http://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
-tar xjvf ffmpeg-snapshot.tar.bz2
-cd ffmpeg
+wget https://github.com/FFmpeg/FFmpeg/tarball/master -O ffmpeg.tar.gz
+rm -rf FFmpeg-FFmpeg*
+tar -zxvf ffmpeg.tar.gz
+cd FFmpeg-FFmpeg*
 PKG_CONFIG_PATH="$FFMPEG_PREFIX/lib/pkgconfig"
 export PKG_CONFIG_PATH
 ./configure --prefix="$FFMPEG_PREFIX" --extra-cflags="-I$FFMPEG_PREFIX/include" \
    --extra-ldflags="-L$FFMPEG_PREFIX/lib" --bindir="$FFMPEG_BINDIR" --extra-libs="-ldl" --enable-gpl \
    --enable-libass --enable-libfdk-aac --enable-libmp3lame --enable-libtheora \
-   --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree
+   --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree \
+   --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-version3 --enable-libvo-amrwbenc
 make
 make install
 make distclean
