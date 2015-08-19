@@ -14,5 +14,5 @@ mkdir -p $FFMPEG_PREFIX
 mkdir -p $FFMPEG_BINDIR
 
 cd $FFMPEG_BINDIR
-wget http://zhm.s3.amazonaws.com/ffmpeg/ffmpeg-ubuntu-trusty-amd64-bin.tar.gz -O ffmpeg.tar.gz
+wget http://zhm.s3.amazonaws.com/ffmpeg/ffmpeg-2.7-ubuntu-trusty-amd64-bin.tar.gz -O ffmpeg.tar.gz
 tar xzvf ffmpeg.tar.gz
