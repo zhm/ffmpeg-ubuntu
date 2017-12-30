@@ -7,12 +7,12 @@ sudo apt-get -y install autoconf automake build-essential libass-dev libgpac-dev
   libxext-dev libxfixes-dev pkg-config texi2html zlib1g-dev libmp3lame-dev \
   libopencore-amrnb-dev libopencore-amrwb-dev libvo-amrwbenc-dev
 
-FFMPEG_PREFIX="$(echo $HOME/local)"
+FFMPEG_PREFIX="$(echo $(pwd)/local)"
 FFMPEG_BINDIR="$(echo $FFMPEG_PREFIX/bin)"
 
 mkdir -p $FFMPEG_PREFIX
 mkdir -p $FFMPEG_BINDIR
 
 cd $FFMPEG_BINDIR
-wget http://zhm.s3.amazonaws.com/ffmpeg/ffmpeg-ubuntu-trusty-amd64-bin.tar.gz -O ffmpeg.tar.gz
+wget http://zhm.s3.amazonaws.com/ffmpeg/ffmpeg-2.7-ubuntu-trusty-amd64-bin.tar.gz -O ffmpeg.tar.gz
 tar xzvf ffmpeg.tar.gz

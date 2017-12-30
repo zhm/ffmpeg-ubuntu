@@ -17,4 +17,6 @@ You can customize the installation paths by changing the `FFMPEG_PREFIX` and `FF
 $ wget https://raw.githubusercontent.com/zhm/ffmpeg-ubuntu/master/install_ffmpeg.sh
 $ chmod +x install_ffmpeg.sh
 $ ./install_ffmpeg.sh
+
+$ cd ~/local && tar -czvf ffmpeg-2.7-ubuntu-trusty-amd64-bin.tar.gz -C bin .
 ```
