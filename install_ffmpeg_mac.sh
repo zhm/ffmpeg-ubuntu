@@ -19,7 +19,7 @@ wget http://www.tortall.net/projects/yasm/releases/yasm-1.2.0.tar.gz
 tar xzvf yasm-1.2.0.tar.gz
 cd yasm-1.2.0
 ./configure --prefix="$FFMPEG_PREFIX" --bindir="$FFMPEG_BINDIR"
-make
+make -j8
 make install
 make distclean
 
@@ -30,7 +30,7 @@ wget http://download.videolan.org/pub/x264/snapshots/last_x264.tar.bz2
 tar xjvf last_x264.tar.bz2
 cd x264-snapshot*
 ./configure --prefix="$FFMPEG_PREFIX" --bindir="$FFMPEG_BINDIR" --enable-static
-make
+make -j8
 make install
 make distclean
 
@@ -42,18 +42,50 @@ tar xzvf fdk-aac.tar.gz
 cd mstorsjo-fdk-aac*
 autoreconf -fiv
 ./configure --prefix="$FFMPEG_PREFIX" --disable-shared
-make
+make -j8
 make install
 make distclean
 
 
 
 cd $FFMPEG_SOURCES
-wget http://webm.googlecode.com/files/libvpx-v1.3.0.tar.bz2
-tar xjvf libvpx-v1.3.0.tar.bz2
-cd libvpx-v1.3.0
-./configure --prefix="$FFMPEG_PREFIX" --disable-examples
-make
+wget https://github.com/webmproject/libvpx/archive/v1.8.1.tar.gz
+tar xjvf v1.8.1.tar.gz
+cd libvpx-1.8.1
+./configure --prefix="$FFMPEG_PREFIX" --disable-examples  --disable-shared
+make -j8
+make install
+make clean
+
+
+
+cd $FFMPEG_SOURCES
+wget https://downloads.sourceforge.net/sourceforge/lame/lame-3.100.tar.gz
+tar xjvf lame-3.100.tar.gz
+cd lame-3.100
+./configure --prefix="$FFMPEG_PREFIX" --enable-nasm --disable-shared
+make -j8
+make install
+make clean
+
+
+
+cd $FFMPEG_SOURCES
+wget https://downloads.xiph.org/releases/vorbis/libvorbis-1.3.6.tar.xz
+tar xjvf libvorbis-1.3.6.tar.xz
+cd libvorbis-1.3.6
+./configure --prefix="$FFMPEG_PREFIX" --disable-shared
+make -j8
+make install
+make clean
+
+
+cd $FFMPEG_SOURCES
+wget https://tukaani.org/xz/xz-5.2.4.tar.gz
+tar xjvf xz-5.2.4.tar.gz
+cd xz-5.2.4
+./configure --prefix="$FFMPEG_PREFIX" --disable-shared
+make -j8
 make install
 make clean
 
@@ -68,8 +100,9 @@ export PKG_CONFIG_PATH
 ./configure --prefix="$FFMPEG_PREFIX" --extra-cflags="-I$FFMPEG_PREFIX/include" \
    --extra-ldflags="-L$FFMPEG_PREFIX/lib" --bindir="$FFMPEG_BINDIR" --extra-libs="-ldl" --enable-gpl \
    --enable-libfdk-aac --enable-libmp3lame \
-   --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree
-make
+   --enable-libvpx --enable-libx264 --enable-nonfree \
+   --disable-indev=jack --disable-sdl2
+
+make -j8
 make install
 make distclean
-# hash -r
